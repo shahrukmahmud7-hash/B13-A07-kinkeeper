@@ -9,6 +9,8 @@ import Stats from './pages/stats/Stats'
 import Home from './pages/home/Home'
 import NotFound from './pages/notFound/NotFound'
 import FriendsDetails from './pages/FriendsDetails'
+import { FriendActivityProvider } from './context/FriendActivityContext'
+import { ToastContainer } from 'react-toastify'
 
 
 const router = createBrowserRouter(
@@ -42,7 +44,13 @@ const router = createBrowserRouter(
 
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-     <RouterProvider router={router} />
+  <StrictMode>  
+     <FriendActivityProvider>
+  <RouterProvider router={router} />
+     </FriendActivityProvider>
+      <ToastContainer 
+        position="top-center"
+       
+      />
   </StrictMode>,
 )

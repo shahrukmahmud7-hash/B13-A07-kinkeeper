@@ -5,8 +5,14 @@ import { LuPhoneCall } from 'react-icons/lu';
 import { MdOutlineTextsms } from 'react-icons/md';
 import { RiDeleteBinFill, RiNotificationSnoozeFill } from 'react-icons/ri';
 import { useParams } from 'react-router-dom';
+import { useFriendActivity } from '../context/FriendActivityContext';
+import { toast } from 'react-toastify';
 
 const FriendDetails = () => {
+
+const { addActivity } = useFriendActivity();
+
+
   const { id } = useParams();
   const [friend, setFriend] = useState(null);
 
@@ -43,6 +49,10 @@ const FriendDetails = () => {
         <div className="flex gap-2 mt-2">
           <span className="badge badge-error badge-sm 
           text-white text-[10px] py-2">{friend.tags}</span> 
+        </div>
+        <div className="flex gap-2 mt-2">
+          <span className="badge badge-warning 
+          text-white text-[10px] py-2">{friend.status}</span> 
         </div>
         <p className="italic text-slate-400 text-sm mt-4">
         "Former colleague, great mentor"</p>
@@ -104,28 +114,35 @@ const FriendDetails = () => {
       <div className="card bg-white border border-slate-100 shadow-sm p-6">
         <h3 className="font-bold text-emerald-800 mb-4">Quick Check-In</h3>
         <div className="grid grid-cols-3 gap-4">
-          <button className="flex flex-col items-center justify-center p-4 rounded-xl
-           bg-slate-50 border border-slate-100 hover:bg-slate-100 transition-colors">
-
-            <span className="text-xs font-medium">
-            <LuPhoneCall  /> Call
-                </span>
+          
+         <button
+             onClick={() => {
+             addActivity("call", friend);
+             toast.success(`Calling ${friend.name} 📞`); // toast show
+               }}
+              className="flex flex-col items-center justify-center p-4 rounded-xl
+             bg-slate-50 border border-slate-100 hover:bg-slate-100">
+              <LuPhoneCall /> Call
           </button>
 
-          <button className="flex flex-col items-center justify-center p-4 rounded-xl
-           bg-slate-50 border border-slate-100 hover:bg-slate-100 transition-colors">
-
-            <span className="text-xs font-medium">
-             <MdOutlineTextsms />Text
-                </span>
+         <button
+             onClick={() => {
+             addActivity("text", friend); 
+             toast.success(`Calling ${friend.name} 💬`); // toast show
+               }}
+              className="flex flex-col items-center justify-center p-4 rounded-xl
+             bg-slate-50 border border-slate-100 hover:bg-slate-100">
+              <LuPhoneCall /> Text
           </button>
 
-          <button className="flex flex-col items-center justify-center p-4 rounded-xl
-           bg-slate-50 border border-slate-100 hover:bg-slate-100 transition-colors">
-           
-            <span className="text-xs font-medium">
-              <IoVideocamSharp /> Video
-                </span>
+         <button
+             onClick={() => {
+             addActivity("video", friend);
+             toast.success(`Calling ${friend.name} 🎥`); // toast show
+               }}
+              className="flex flex-col items-center justify-center p-4 rounded-xl
+             bg-slate-50 border border-slate-100 hover:bg-slate-100">
+              <LuPhoneCall /> Video
           </button>
         </div>
       </div>
