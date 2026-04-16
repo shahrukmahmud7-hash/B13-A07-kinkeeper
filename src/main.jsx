@@ -8,6 +8,7 @@ import TimeLine from './pages/timeline/TimeLine'
 import Stats from './pages/stats/Stats'
 import Home from './pages/home/Home'
 import NotFound from './pages/notFound/NotFound'
+import FriendsDetails from './pages/FriendsDetails'
 
 
 const router = createBrowserRouter(
@@ -18,7 +19,8 @@ const router = createBrowserRouter(
       children :[
         {
           path: '/',
-          element : <Home></Home>
+          element : <Home></Home>,
+          // loader: ()=> fetch('/friends.json')
         },
         {
           path: '/timeline',
@@ -27,6 +29,10 @@ const router = createBrowserRouter(
         {
           path: '/stats',
           element : <Stats></Stats>
+        },
+        {
+          path: 'friend/:id',
+          element: <FriendsDetails></FriendsDetails>
         },
       ],
       errorElement: <NotFound></NotFound>

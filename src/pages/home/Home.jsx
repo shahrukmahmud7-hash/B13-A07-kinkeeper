@@ -1,4 +1,6 @@
 import React from 'react';
+import FriendCard from '../../components/shared/FriendCard';
+
 
 const Home = () => {
 
@@ -13,7 +15,8 @@ const Home = () => {
           Friends to keep close in your life
         </h1>
         <p className="text-gray-500 mt-2">
-          Track and manage your relationships easily
+          Your personal shelf meaningful connections.Browse, tend, and nurture the <br/>
+          relationships that matter most 
         </p>
         <button className="mt-4 bg-[#244D3F]
          text-white px-4 py-2 rounded">
@@ -50,7 +53,9 @@ const Home = () => {
        </div>
     </div>
       </div>
+       <FriendCard></FriendCard>
     </div>
+   
     );
 };
 
